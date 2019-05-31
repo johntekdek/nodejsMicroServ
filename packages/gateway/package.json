@@ -16,12 +16,5 @@
     "url": "https://github.com/johntekdek/nodejsMicroServ/issues"
   },
   "homepage": "https://github.com/johntekdek/nodejsMicroServ#readme",
-  "dependencies": {
-    "apollo-server-express": "^1.3.6",
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "graphql": "^0.13.2",
-    "graphql-tools": "^3.0.2"
-  }
+  "dependencies": {}
 }

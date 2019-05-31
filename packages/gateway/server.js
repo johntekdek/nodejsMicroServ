@@ -1,24 +1,28 @@
 const server = require ('express') ();
 const bodyParser = require ('body-parser');
-const {graphqlExpress, graphiqlExpress} = require ('apollo-server-express');
+const {ApolloServer, gql} = require ('apollo-server');
 const {makeExecutableSchema} = require ('graphql-tools');
 
-const typeDefs = 'type Query {hey:String!}';
+const typeDefs = gql` 
+        type Course {
+          title : String,
+          author: String,
+          description:String,
+          url:String
+        }
+        type Query{
+          courses:[Course]
+        }
+
+`;
 
 const resolvers = {
   Query: {
-    hey: () => 'hey there',
+    courses: () => courses,
   },
 };
 
-const schema = makeExecutableSchema ({
-  typeDefs,
-  resolvers,
-});
-
-server.use (bodyParser);
-server.use ('/graphql', graphqlExpress ({schema}));
-server.use ('/gq', graphiqlExpress ({endpointURL: '/graphql'}));
+const server = new ApolloServer ({typeDefs, resolvers});
 
 server.listen (3000, () => {
   console.log ('lisening on port 3000');
